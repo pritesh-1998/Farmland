@@ -19,10 +19,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/shop', function () {
-    return view('shop');
-})->name('shop');
-
 
 Route::middleware([
     'auth:sanctum',
@@ -35,4 +31,6 @@ Route::middleware([
 });
 
 Route::any('/get_crops_ajax', [ShopPageDataController::class, 'get_crops_ajax'])->name("get_crops_ajax");
+Route::any('/shop', [ShopPageDataController::class, 'index'])->name("shop");
+
 Route::any('/get_quantity_location_ajax', [ShopPageDataController::class, 'get_quantity_location_ajax'])->name("get_quantity_location_ajax");

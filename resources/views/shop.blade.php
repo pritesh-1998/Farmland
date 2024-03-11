@@ -21,108 +21,25 @@
         </form>
     </div>
     
+        @php
+            // dd($allProducts);
+        @endphp
         
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 py-28">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-28">
             <!-- Product Card 1 -->
+            @foreach ($allProducts as $product)
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
+                <img src="{{asset(''.$product->productpicPath)}}" alt="Product Image" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 1</h2>
-                    <p class="text-gray-600 mb-2">Product Description 1</p>
-                    <p class="text-gray-800 font-bold">$19.99</p>
+                    <h2 class="text-lg font-semibold mb-2">{{$product->product}}</h2>
+                    <p class="text-gray-600 mb-2">Description :- {{$product->description}}</p>
+                    <p class="text-gray-800 font-bold">Price :- {{$product->price}}</p>
+                    <p class="text-gray-800 font-bold">Quantity :- {{$product->quantity}}</p>
+                    <p class="text-gray-800 font-bold">Location :- {{$product->location}}</p>
                 </div>
             </div>
+            @endforeach
 
-            <!-- Product Card 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 2</h2>
-                    <p class="text-gray-600 mb-2">Product Description 2</p>
-                    <p class="text-gray-800 font-bold">$29.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 3</h2>
-                    <p class="text-gray-600 mb-2">Product Description 3</p>
-                    <p class="text-gray-800 font-bold">$39.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 4 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 4</h2>
-                    <p class="text-gray-600 mb-2">Product Description 4</p>
-                    <p class="text-gray-800 font-bold">$49.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 5 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 5</h2>
-                    <p class="text-gray-600 mb-2">Product Description 5</p>
-                    <p class="text-gray-800 font-bold">$59.99</p>
-                </div>
-            </div>
-            <!-- Product Card 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 1</h2>
-                    <p class="text-gray-600 mb-2">Product Description 1</p>
-                    <p class="text-gray-800 font-bold">$19.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 2</h2>
-                    <p class="text-gray-600 mb-2">Product Description 2</p>
-                    <p class="text-gray-800 font-bold">$29.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 3</h2>
-                    <p class="text-gray-600 mb-2">Product Description 3</p>
-                    <p class="text-gray-800 font-bold">$39.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 4 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 4</h2>
-                    <p class="text-gray-600 mb-2">Product Description 4</p>
-                    <p class="text-gray-800 font-bold">$49.99</p>
-                </div>
-            </div>
-
-            <!-- Product Card 5 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="https://via.placeholder.com/300" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-2">Product Name 5</h2>
-                    <p class="text-gray-600 mb-2">Product Description 5</p>
-                    <p class="text-gray-800 font-bold">$59.99</p>
-                </div>
-            </div>
-            
         </div>
     </div>
 </div>
