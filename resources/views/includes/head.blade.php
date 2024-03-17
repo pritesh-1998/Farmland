@@ -12,8 +12,14 @@
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <meta name="author" content="Themesberg">
+    <meta name="author" content="Themesberg"> <link
+    href="https://cdn.jsdelivr.net/npm/daisyui@2.6.0/dist/full.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <script src="https://cdn.tailwindcss.com"></script>
     <!-- Social media share -->
     <meta property="og:title" content="Farmland - Tailwind CSS Landing Page">
     <meta property="og:site_name" content="Themesberg">
@@ -24,11 +30,9 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@themesberg" />
     <meta name="twitter:creator" content="@themesberg" />
-
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="{{ asset('css/output.css') }}">
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
