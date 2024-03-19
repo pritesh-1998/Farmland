@@ -3,7 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopPageDataController;
 use App\Http\Controllers\BackendController;
+
 use App\Http\Controllers\LeaseController;
+use App\Http\Controllers\CropController;
+use App\Http\Controllers\FarmController;
+use App\Http\Controllers\farmCropController;
+use App\Http\Controllers\farmRegisterController;
 
 
 /*
@@ -31,8 +36,10 @@ Route::middleware([
     Route::any('/dashboard', [BackendController::class, 'index'])->name("dashboard");
     Route::any('/createstock', [BackendController::class, 'createstock'])->name("createstock");
     Route::resource('lease', LeaseController::class);
-
-
+    Route::resource('crop', CropController::class);
+    Route::resource('farm', FarmController::class);
+    Route::resource('farm-crop', farmCropController::class);
+    Route::resource('register', farmRegisterController::class);
 });
 
 

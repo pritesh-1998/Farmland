@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class farmLease extends Model
 {
 protected $fillable=[
-     'farm_id',
+        'farm_id',
         'date_from',
         'date_to',
         'farmer_name',
@@ -18,5 +18,5 @@ protected $fillable=[
     public function parent()
     {
         return $this->belongsTo(farm::class,'id');
-}
+    }
 }

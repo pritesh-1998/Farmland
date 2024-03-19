@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class farm extends Model
 {
-protected $fillable=[
-    'name',
-    'description',
-    'size',
-    'location',
-    'created_on',
+    protected $fillable=[
+        'name',
+        'description',
+        'size',
+        'location',
+        'created_on',
     ];
 
     public function children()
