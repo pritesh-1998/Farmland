@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Models\farm;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -96,13 +96,13 @@ class FarmController extends Controller
      */
     public function destroy(farm $farm)
     {
-        if ($farm->children()->exists()){
-        return redirect()->route('category.index')->withToastWarning('cannot delete existing parent farm');
+        $farm->delete();
+        return redirect()->route('farm.index')->withSuccessMessage('farm record deleted successfully');
     }
-        else{
-            $farm->delete();
-            return redirect()->route('farm.index')->withSuccessMessage('farm record deleted successfully');
-        }
 
+    public function ajaxcallforfarm(Request $request){
+        $data=DB::table('farms')->select('*')->get();
+        return DataTables::of($data)
+        ->make(true);
     }
 }

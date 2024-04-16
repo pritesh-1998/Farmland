@@ -40,6 +40,8 @@ Route::middleware([
     Route::resource('farm', FarmController::class);
     Route::resource('farm-crop', farmCropController::class);
     Route::resource('register', farmRegisterController::class);
+    Route::any('/ajaxcallforfarm', [FarmController::class, 'ajaxcallforfarm'])->name("ajaxcallforfarm");
+
 });
 
 

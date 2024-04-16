@@ -4,72 +4,154 @@
             {{ __('Add Products') }}
         </h2>
     </x-slot>
+    <!--Regular Datatables CSS-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+    <style>
+        /*Overrides for Tailwind CSS */
+
+        /*Form fields*/
+        .dataTables_wrapper select,
+        .dataTables_wrapper .dataTables_filter input {
+            color: #4a5568;
+            /*text-gray-700*/
+            padding-left: 1rem;
+            /*pl-4*/
+            padding-right: 1rem;
+            /*pl-4*/
+            padding-top: .5rem;
+            /*pl-2*/
+            padding-bottom: .5rem;
+            /*pl-2*/
+            line-height: 1.25;
+            /*leading-tight*/
+            border-width: 2px;
+            /*border-2*/
+            border-radius: .25rem;
+            border-color: #edf2f7;
+            /*border-gray-200*/
+            background-color: #edf2f7;
+            /*bg-gray-200*/
+        }
+
+        /*Row Hover*/
+        table.dataTable.hover tbody tr:hover,
+        table.dataTable.display tbody tr:hover {
+            background-color: #ebf4ff;
+            /*bg-indigo-100*/
+        }
+
+        /*Pagination Buttons*/
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            font-weight: 700;
+            /*font-bold*/
+            border-radius: .25rem;
+            /*rounded*/
+            border: 1px solid transparent;
+            /*border border-transparent*/
+        }
+
+        /*Pagination Buttons - Current selected */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            color: #fff !important;
+            /*text-white*/
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+            /*shadow*/
+            font-weight: 700;
+            /*font-bold*/
+            border-radius: .25rem;
+            /*rounded*/
+            background: #667eea !important;
+            /*bg-indigo-500*/
+            border: 1px solid transparent;
+            /*border border-transparent*/
+        }
+
+        /*Pagination Buttons - Hover */
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            color: #fff !important;
+            /*text-white*/
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+            /*shadow*/
+            font-weight: 700;
+            /*font-bold*/
+            border-radius: .25rem;
+            /*rounded*/
+            background: #667eea !important;
+            /*bg-indigo-500*/
+            border: 1px solid transparent;
+            /*border border-transparent*/
+        }
+
+        /*Add padding to bottom border */
+        table.dataTable.no-footer {
+            border-bottom: 1px solid #e2e8f0;
+            /*border-b-1 border-gray-300*/
+            margin-top: 0.75em;
+            margin-bottom: 0.75em;
+        }
+
+        /*Change colour of responsive icon*/
+        table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
+        table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+            background-color: #667eea !important;
+            /*bg-indigo-500*/
+        }
+    </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="mx-auto bg-white rounded-md overflow-hidden shadow-md">
                     <div class="mx-auto bg-white rounded-md overflow-hidden shadow-md">
-                        <div class="container mx-auto sm:px-4 max-w-full mx-auto sm:px-4 px-4">
-                            <h1 class="mt-4"><i class="fas fa-tree"></i> Farm</h1>
+                        <div class="container mx-auto sm:px-4 max-w-full mx-auto sm:px-4 px-4 mb-5">
                             <div class="flex flex-wrap  pt-3">
-                                <div class="xl:w-1/4 pr-4 pl-4 md:w-1/2 pr-4 pl-4">
-                                    <div
-                                        class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 bg-gray-900 text-white mb-4">
-                                        <div class="flex-auto p-6"><a class="text-xs text-white stretched-link"
-                                                href="{{ route('farm.create') }}">
-                                            </a>Add farm</div>
-                                    </div>
+                                <div class="xl:w-1/4 pr-4 md:w-1/2 m-2">
+                                    <a class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 p-5"
+                                        href="{{ route('farm.create') }}">Add farm
+                                    </a>
                                 </div>
                             </div>
-                            <div
-                                class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300 mb-4">
-                                <div class="py-3 px-6 mb-0 bg-gray-200 border-b-1 border-gray-300 text-gray-900">
-                                    <i class="fas fa-table me-1"></i>
-                                </div>
-                                <div class="flex-auto p-6">
-                                    <table id="datatablesSimple">
+                        </div>
+                        <div class="">
+                            <div class="flex-auto p-6" style="padding-top:0px;">
+                                <!--Card-->
+                                <div id='recipients' class=" mt-6 lg:mt-0 rounded shadow bg-white">
+                                    <table id="example" class="stripe hover"
+                                        style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                                         <thead>
                                             <tr>
-                                                <th><i class="fas fa-pen me-1"></i>Name</th>
-                                                <th><i class="fas fa-bookmark me-1"></i>Description</th>
-                                                <th><i class="fas fa-crop me-1"></i>size (Acres)</th>
-                                                <th><i class="fas fa-location me-1"></i>location</th>
-                                                <th><i class="fas fa-calendar-check me-1"></i>created on</th>
-                                                <th colspan="3"><i class="fas fa-hammer me-1"></i>Actions</th>
+                                                <th data-priority="1">Name</th>
+                                                <th data-priority="2">Description</th>
+                                                <th data-priority="3">size (Acres)</th>
+                                                <th data-priority="4">location</th>
+                                                <th data-priority="5">created on</th>
+                                                <th data-priority="6">Actions</th>
+                                                <th data-priority="6">Actions</th>
+                                                <th data-priority="6">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>size</th>
-                                                <th>created on</th>
-                                                <th>location</th>
-                                                <th colspan="3">Actions</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             @foreach ($farms as $farm)
                                                 <tr>
-                                                    <td>{{ $farm->name }}</td>
-                                                    <td>{{ $farm->description }}</td>
-                                                    <td>{{ $farm->size }}</td>
-                                                    <td>{{ $farm->location }}</td>
-                                                    <td>{{ $farm->created_on }}</td>
-                                                    <td><a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600 "
+                                                    <td class="text-center">{{ $farm->name }}</td>
+                                                    <td class="text-center">{{ $farm->description }}</td>
+                                                    <td class="text-center">{{ $farm->size }}</td>
+                                                    <td class="text-center">{{ $farm->location }}</td>
+                                                    <td class="text-center">{{ $farm->created_on }}</td>
+                                                    <td class="text-center"><a class=""
                                                             href="{{ route('farm.edit', $farm) }}"><i
                                                                 class="fas fa-edit"></i>Edit</a>
-                                                    <td><a class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-orange-400 text-black hover:bg-orange-500 "
-                                                            href="{{ route('farm.show', $farm) }}">View More<i
-                                                                class="fas fa-arrow-right lg:px-2"></i></a>
+                                                    <td class="text-center"><a class=""
+                                                            href="{{ route('farm.show', $farm) }}">View
+                                                            More<i class="fas fa-arrow-right lg:px-2"></i></a>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <form method="post"
                                                             action="{{ route('farm.destroy', $farm) }}">
                                                             @csrf
                                                             @method('delete')
-                                                            <button type="submit"
-                                                                class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-red-600 text-white hover:bg-red-700 delete-confirm ">
+                                                            <button type="submit" class="">
                                                                 <i class="fas fa-trash"></i>delete</button>
                                                         </form>
                                                     </td>
@@ -85,4 +167,18 @@
             </div>
         </div>
     </div>
+    </div>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                responsive: true
+            })
+            // .columns.adjust()
+            // .responsive.recalc();
+        });
+    </script>
 </x-app-layout>
