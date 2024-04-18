@@ -65,4 +65,5 @@ class BackendController extends Controller
             return redirect()->back()->dangerBanner('Something Went Wrong');
         }
     }
+
 }
