@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 
 class GeneralController extends Controller
@@ -11,6 +11,8 @@ class GeneralController extends Controller
     }
 
     public function getSchems(Request $request){
-        return view("scheme");
+        
+        $allSchemes = DB::table('schemes')->get();
+        return view('scheme',compact('allSchemes'));
     }
 }

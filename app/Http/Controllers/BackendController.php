@@ -66,4 +66,60 @@ class BackendController extends Controller
         }
     }
 
+    public function loadSchemePage(Request $request){
+        return view('addSchemes');
+    }
+    public function addSchemes(Request $request){
+        $rules =  [
+            'name'        			    => 'required',
+            'launched_date'  			=> 'required',
+            'yt'        			    => 'required',
+            'website'  				    => 'required',
+            'description'  				=> 'required',
+            'eligibility'  				=> 'required',
+            'state'  				    => 'required',
+        ];
+
+        $customized_error_msg = [
+            'name.required'      			 => "Scheme Name is required.",
+            'description.required'           => "description is required.",
+            'launched_date.required' 		 => "launched_date is required.",
+            'yt.required'      			     => "youtube Link is required.",
+            'website.required' 				 => "Website is required.",
+            'eligibility.required' 			 => "Eligibility is required.",
+            'state.required' 			     => "State is required.",
+        ];
+
+        $validator = Validator::make($request->all(),$rules,$customized_error_msg);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $name 		    = isset($request->name) ? $request->name : '';
+        $description 	= isset($request->description) ? $request->description : '';
+        $launched_date 	= isset($request->launched_date) ? $request->launched_date : '';
+        $yt             = isset($request->yt) ? $request->yt : '';
+        $website        = isset($request->website) ? $request->website : '';
+        $eligibility 	= isset($request->eligibility) ? $request->eligibility : '';
+        $state      	= isset($request->state) ? $request->state : '';
+
+        $details = [
+            'name'           => $name,
+            'description' 	 => $description,
+            'launched_date'  => $launched_date,
+            'youtube'        => $yt,            
+            'website' 	     => $website,
+            'eligibility'    => $eligibility,
+            'state'          => $state,
+
+        ];
+
+        $queryState = DB::table("schemes")->insert($details);
+        if($queryState) {
+            return redirect()->back()->banner('Scheme added Successfully');
+        } else {
+            return redirect()->back()->dangerBanner('Something Went Wrong');
+        }
+    }
 }

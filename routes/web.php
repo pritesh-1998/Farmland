@@ -37,6 +37,9 @@ Route::middleware([
 ])->group(function () {
     Route::any('/dashboard', [BackendController::class, 'index'])->name("dashboard");
     Route::any('/createstock', [BackendController::class, 'createstock'])->name("createstock");
+    Route::any('/loadSchemePage', [BackendController::class, 'loadSchemePage'])->name("loadSchemePage");
+    Route::any('/addSchemes', [BackendController::class, 'addSchemes'])->name("addSchemes");
+
     Route::resource('lease', LeaseController::class);
     Route::resource('crop', CropController::class);
     Route::resource('farm', FarmController::class);
