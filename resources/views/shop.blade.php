@@ -321,27 +321,43 @@
 
             console.log($(e).attr('data-farmer-id'));
             $.ajax({
-                url: '{{ route('fetchfamerproducts') }}',
-                type: 'GET',
-                data: {
-                    'farmerid': farmerid,
-                    'productID': productid,
-                },
-                success: function(data) {
-                    const modalContent = document.getElementById('modalContent');
-                    modalContent.innerHTML = `
-                    <h2 class="text-lg font-semibold mb-2">Supplier Name :- ${data.SupplierName}</h2>
-                    <p class="text-gray-600 mb-2">loaction: ${data.location}</p>
-                    <p class="text-gray-600 mb-2">Email: ${data.email}</p>
-                    <p class="text-gray-600 mb-2">Farm Address: ${data.address}</p>
-                    <p class="text-gray-800 font-bold">Contact: ${data.phone}</p>
-                    <!-- Add more fields as needed -->
-                `;
+                        url: '{{ route('fetchfamerproducts') }}',
+                        type: 'GET',
+                        data: {
+                            'farmerid': farmerid,
+                            'productID': productid,
+                        },
+                        success: function(data) {
+                            const modalContent = document.getElementById('modalContent');
+                            @guest
+
+                            modalContent.innerHTML = `
+                                <h2 class="text-lg font-semibold mb-2">Supplier Name :- ************</h2>
+                                <p class="text-gray-600 mb-2">loaction: ************</p>
+                                <p class="text-gray-600 mb-2">Email: ************</p>
+                                <p class="text-gray-600 mb-2">Farm Address: ************</p>
+                                <p class="text-gray-800 font-bold">Contact: ************</p>
+                                <p class="text-gray-800 font-bold">Please Login for bid and Famers Details</p>
+
+                                <!-- Add more fields as needed -->
+                            `;
+                        @endguest
+                        @auth
+                        modalContent.innerHTML = `
+                            <h2 class="text-lg font-semibold mb-2">Supplier Name :- ${data.SupplierName}</h2>
+                            <p class="text-gray-600 mb-2">loaction: ${data.location}</p>
+                            <p class="text-gray-600 mb-2">Email: ${data.email}</p>
+                            <p class="text-gray-600 mb-2">Farm Address: ${data.address}</p>
+                            <p class="text-gray-800 font-bold">Contact: ${data.phone}</p>
+                             <button id="closeModalButton" data=` + productid + `
+                            class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2  sm:ml-3 sm:w-auto sm:text-sm">Bid for this product</button>
+                        `;
+                    @endauth
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching farmer details:', error);
                 }
-            });
+        });
         }
 
         function openModal(modalId) {
