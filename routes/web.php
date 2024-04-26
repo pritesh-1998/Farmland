@@ -11,6 +11,8 @@ use App\Http\Controllers\farmCropController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\farmRegisterController;
+use App\Http\Controllers\BidController;
+
 
 
 /*
@@ -39,7 +41,11 @@ Route::middleware([
     Route::any('/createstock', [BackendController::class, 'createstock'])->name("createstock");
     Route::any('/loadSchemePage', [BackendController::class, 'loadSchemePage'])->name("loadSchemePage");
     Route::any('/addSchemes', [BackendController::class, 'addSchemes'])->name("addSchemes");
+    Route::any('/bid', [BidController::class, 'makeBid'])->name("makeBid");
+    Route::any('/submitBid', [BidController::class, 'submitBid'])->name("submitBid");
 
+
+    
     Route::resource('lease', LeaseController::class);
     Route::resource('crop', CropController::class);
     Route::resource('farm', FarmController::class);
