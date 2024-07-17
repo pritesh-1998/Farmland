@@ -60,6 +60,10 @@ to create the necessary database tables
 ```
 php artisan serve
 ```
+9. Run the following route to load the live data from Govy api:
+```
+/getCropData
+```
 Now, you can access the Farm Manager application in your web browser at `http://localhost:8000`.
 
 ## Usage
